@@ -1,0 +1,163 @@
+{% comment %}
+  Présidentielle 2027 — template TRMNL (full layout, 800x480)
+  La bascule d'affichage est décidée côté script (champ `affichage`) plutôt
+  qu'en Liquid, pour éviter la logique conditionnelle profonde que le moteur
+  Liquid de TRMNL gère mal (pas de ternaire, accès tableau limité).
+  Valeurs possibles de `affichage` :
+    sondage_t1        -> classement complet, dernier sondage 1er tour
+    resultat_t1        -> classement complet, résultats officiels 1er tour
+    duel_sondage_t2    -> duel à deux, dernier sondage 2nd tour
+    resultat_t2         -> duel à deux, résultats officiels 2nd tour
+{% endcomment %}
+
+{% if affichage == "sondage_t1" %}
+  {% assign jeu = sondage_t1 %}
+  {% assign titre = "Intentions de vote — 1er tour" %}
+  {% assign source = "Sondage" %}
+{% elsif affichage == "resultat_t1" %}
+  {% assign jeu = resultats_t1 %}
+  {% assign titre = "Résultats officiels — 1er tour" %}
+  {% assign source = "Résultat" %}
+{% elsif affichage == "duel_sondage_t2" %}
+  {% assign jeu = sondage_t2 %}
+  {% assign titre = "Duel — 2nd tour" %}
+  {% assign source = "Sondage" %}
+{% elsif affichage == "resultat_t2" %}
+  {% assign jeu = resultats_t2 %}
+  {% assign titre = "Résultat officiel — 2nd tour" %}
+  {% assign source = "Résultat" %}
+{% endif %}
+
+<style>
+  .elec { width:800px; height:480px; background:#fff; color:#000; font-family: Arial, sans-serif; overflow:hidden; border:2px solid #000; position:relative; }
+  .elec .header { display:flex; justify-content:space-between; align-items:baseline; padding: 14px 28px 8px 28px; border-bottom: 3px solid #000; }
+  .elec .title { font-size: 22px; font-weight: 800; letter-spacing: 0.5px; }
+  .elec .subtitle { font-size: 12px; font-weight: 600; color:#333; margin-top:2px; }
+  .elec .countdown { text-align:right; }
+  .elec .countdown .num { font-size: 26px; font-weight: 800; line-height:1; }
+  .elec .countdown .lbl { font-size: 10px; font-weight:600; color:#333; }
+  .elec .body { padding: 10px 28px 0 28px; }
+  .elec .row { display:flex; align-items:center; margin-bottom: 9px; }
+  .elec .rank { width:24px; font-size:14px; font-weight:800; }
+  .elec .name-col { width: 220px; }
+  .elec .name { font-size: 15px; font-weight:700; }
+  .elec .parti { font-size: 10px; color:#444; font-weight:500; }
+  .elec .bar-track { flex:1; height: 17px; background:#eee; border:1.5px solid #000; margin-right:14px; }
+  .elec .bar-fill { height:100%; background:#000; }
+  .elec .bar-fill.g2 { background:#555; }
+  .elec .pct { width:64px; text-align:right; font-size:18px; font-weight:800; font-variant-numeric: tabular-nums; }
+  .elec .altstrip { margin: 8px 28px 0 28px; padding: 7px 12px; border: 1.5px dashed #000; display:flex; align-items:center; gap: 10px; background:#f7f7f7; }
+  .elec .altstrip .tag { font-size:10px; font-weight:800; background:#000; color:#fff; padding:2px 6px; flex-shrink:0; }
+  .elec .altstrip .desc { font-size:11px; font-weight:700; flex-shrink:0; }
+  .elec .altstrip .vals { font-size:11px; color:#333; font-weight:600; }
+  .elec .footer { margin-top: 10px; display:flex; justify-content:space-between; padding: 7px 28px; border-top: 2px solid #000; font-size: 10.5px; font-weight:600; color:#333; position:absolute; bottom:0; left:0; right:0; }
+
+  .duel .header { padding: 16px 28px 6px 28px; text-align:center; border-bottom:none; display:block; }
+  .duel .duelrow { display:flex; align-items:center; padding: 18px 28px 10px 28px; }
+  .duel .cand { width: 230px; }
+  .duel .cand.right { text-align:right; }
+  .duel .cand .name { font-size:19px; font-weight:900; }
+  .duel .cand .parti { font-size:11px; color:#444; }
+  .duel .cand .pct { font-size: 34px; font-weight:900; }
+  .duel .gauge { flex:1; height: 34px; border:2.5px solid #000; margin: 0 16px; display:flex; overflow:hidden; }
+  .duel .g1 { background:#000; }
+  .duel .g2 { background:#ccc; }
+  .duel .ecart { text-align:center; margin-top: 10px; }
+  .duel .ecart .val { font-size: 42px; font-weight:900; }
+  .duel .ecart .lbl { font-size: 12px; font-weight:700; color:#333; text-transform:uppercase; letter-spacing:1px; }
+</style>
+
+{% if affichage == "sondage_t1" or affichage == "resultat_t1" %}
+<div class="elec">
+  <div class="header">
+    <div>
+      <div class="title">PRÉSIDENTIELLE 2027</div>
+      <div class="subtitle">{{ titre }}</div>
+    </div>
+    <div class="countdown">
+      {% if affichage == "sondage_t1" %}
+      <div class="num">J-{{ election.jours_avant_t1 }}</div>
+      <div class="lbl">avant le 1er tour</div>
+      {% else %}
+      <div class="num">✓</div>
+      <div class="lbl">résultats officiels</div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="body">
+    {% assign max_intentions = 0 %}
+    {% for c in jeu.candidats %}
+      {% if forloop.first %}{% assign max_intentions = c.intentions %}{% endif %}
+      <div class="row">
+        <div class="rank">{{ c.rang }}</div>
+        <div class="name-col">
+          <div class="name">{{ c.nom }}</div>
+          <div class="parti">{{ c.parti }}</div>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill{% if forloop.first %}{% else %} g2{% endif %}" style="width:{{ c.intentions | times: 100.0 | divided_by: max_intentions | round: 0 }}%"></div>
+        </div>
+        <div class="pct">{{ c.intentions | replace: ".", "," }}%</div>
+      </div>
+    {% endfor %}
+  </div>
+  {% if hypothese_alt_t1 and affichage == "sondage_t1" %}
+  <div class="altstrip">
+    <div class="tag">HYPOTHÈSE {{ hypothese_alt_t1.hypothese }}</div>
+    <div class="desc">{{ hypothese_alt_t1.description }}</div>
+    <div class="vals">
+      {% for c in hypothese_alt_t1.candidats %}{{ c.nom_court }} {{ c.intentions | replace: ".", "," }}%{% unless forloop.last %} · {% endunless %}{% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="footer">
+    <div>{{ jeu.institut }}{% if jeu.commanditaire != blank %} pour {{ jeu.commanditaire }}{% endif %}</div>
+    <div>
+      {% if source == "Sondage" %}Enquête du {{ jeu.debut_enquete }} au {{ jeu.fin_enquete }} · {{ jeu.echantillon }} pers.{% else %}Résultats officiels — {{ jeu.fin_enquete }}{% endif %}
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="elec duel">
+  <div class="header">
+    <div class="title">PRÉSIDENTIELLE 2027 · {{ titre }}</div>
+    <div class="subtitle">
+      {% if source == "Sondage" %}Si le 2nd tour avait lieu dimanche{% else %}Résultats officiels du {{ jeu.fin_enquete }}{% endif %}
+    </div>
+  </div>
+  <div class="duelrow">
+    {% for c in jeu.candidats %}
+      {% if forloop.index == 1 %}
+      <div class="cand">
+        <div class="name">{{ c.nom }}</div>
+        <div class="parti">{{ c.parti }}</div>
+        <div class="pct">{{ c.intentions | replace: ".", "," }}%</div>
+      </div>
+      {% assign g1 = c.intentions %}
+      {% endif %}
+      {% if forloop.index == 2 %}
+      <div class="gauge">
+        <div class="g1" style="width:{{ g1 }}%"></div>
+        <div class="g2" style="width:{{ c.intentions }}%"></div>
+      </div>
+      <div class="cand right">
+        <div class="name">{{ c.nom }}</div>
+        <div class="parti">{{ c.parti }}</div>
+        <div class="pct">{{ c.intentions | replace: ".", "," }}%</div>
+      </div>
+      {% if forloop.index == 2 %}{% assign g2v = c.intentions %}{% endif %}
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="ecart">
+    <div class="val">{{ g1 | minus: g2v | abs | round: 1 | replace: ".", "," }} pts</div>
+    <div class="lbl">d'écart</div>
+  </div>
+  <div class="footer">
+    <div>{{ jeu.institut }}{% if jeu.commanditaire != blank %} pour {{ jeu.commanditaire }}{% endif %}</div>
+    <div>
+      {% if source == "Sondage" %}Enquête du {{ jeu.debut_enquete }} au {{ jeu.fin_enquete }} · {{ jeu.echantillon }} pers.{% else %}Résultats officiels — {{ jeu.fin_enquete }}{% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}
