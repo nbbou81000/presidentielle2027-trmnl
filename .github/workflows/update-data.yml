@@ -1,0 +1,49 @@
+name: Mise à jour des données électorales
+
+on:
+  # Bouton "Run workflow" dans l'onglet Actions de GitHub (déclenchement
+  # manuel, pratique pour la première exécution ou pour forcer une mise
+  # à jour immédiate).
+  workflow_dispatch: {}
+
+  # Déclenchement automatique natif GitHub — toutes les heures. Largement
+  # suffisant : un nouveau sondage ne sort jamais plus d'une ou deux fois
+  # par jour. Le script ne commite de toute façon que si les données ont
+  # réellement changé, donc les exécutions "à vide" ne coûtent rien.
+  schedule:
+    - cron: "13 * * * *"
+
+  # Pratique si tu modifies le script directement depuis l'éditeur GitHub.
+  push:
+    branches: [main]
+    paths:
+      - "scripts/fetch-election-data.js"
+      - ".github/workflows/update-data.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Récupérer et agréger les sondages
+        run: node scripts/fetch-election-data.js
+
+      - name: Committer si les données ont changé
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/election.json
+          if git diff --cached --quiet; then
+            echo "Rien de neuf — pas de commit."
+          else
+            git commit -m "Mise à jour automatique des données électorales"
+            git push
+          fi
