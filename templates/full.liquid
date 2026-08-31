@@ -1,14 +1,25 @@
 {% comment %}
   Présidentielle 2027 — template TRMNL (full layout, 800x480)
-  La bascule d'affichage est décidée côté script (champ `affichage`) plutôt
-  qu'en Liquid, pour éviter la logique conditionnelle profonde que le moteur
-  Liquid de TRMNL gère mal (pas de ternaire, accès tableau limité).
-  Valeurs possibles de `affichage` :
+
+  Écran affiché piloté par le champ de configuration TRMNL "ecran"
+  (custom field select, voir README) :
+    classement  -> classement/duel automatique selon la phase de l'élection
+    tendance    -> courbe des 4 candidats de tête sur les dernières semaines
+    hypotheses  -> toutes les hypothèses testées lors de la dernière vague
+    instituts   -> comparatif des derniers sondages par institut
+    duels       -> grille des duels 2nd tour envisagés
+
+  À l'intérieur de "classement", la bascule sondage/résultat/duel est
+  décidée côté script (champ `affichage`) plutôt qu'en Liquid, pour éviter
+  la logique conditionnelle profonde que le moteur Liquid de TRMNL gère
+  mal (pas de ternaire, accès tableau limité). Valeurs possibles :
     sondage_t1        -> classement complet, dernier sondage 1er tour
     resultat_t1        -> classement complet, résultats officiels 1er tour
     duel_sondage_t2    -> duel à deux, dernier sondage 2nd tour
     resultat_t2         -> duel à deux, résultats officiels 2nd tour
 {% endcomment %}
+
+{% assign ecran = trmnl.plugin_settings.custom_fields_values.ecran | default: "classement" %}
 
 {% if affichage == "sondage_t1" %}
   {% assign jeu = sondage_t1 %}
@@ -65,8 +76,29 @@
   .duel .ecart { text-align:center; margin-top: 10px; }
   .duel .ecart .val { font-size: 42px; font-weight:900; }
   .duel .ecart .lbl { font-size: 12px; font-weight:700; color:#333; text-transform:uppercase; letter-spacing:1px; }
+
+  .lignes .header { padding: 14px 28px 8px 28px; border-bottom: 3px solid #000; }
+  .lignes .liste { padding: 10px 28px 0 28px; }
+  .lignes .carte { padding: 15px 0; border-bottom: 1.5px solid #ccc; display:flex; align-items:center; gap:14px; }
+  .lignes .carte:last-child { border-bottom:none; }
+  .lignes .tag { font-size:12px; font-weight:800; background:#000; color:#fff; padding:5px 9px; flex-shrink:0; }
+  .lignes .tag.ref { background:#fff; color:#000; border:1.5px solid #000; }
+  .lignes .desc { font-size:13.5px; font-weight:700; width: 320px; flex-shrink:0; }
+  .lignes .vals { font-size:14px; color:#222; font-weight:600; flex:1; text-align:right; }
+  .lignes .inst-name { font-size:17px; font-weight:800; width:190px; flex-shrink:0; }
+  .lignes .inst-date { font-size:11px; color:#555; font-weight:600; width:75px; flex-shrink:0; }
+
+  .grille4 .cell { border: 1.5px solid #000; padding: 12px 16px; display:flex; flex-direction:column; justify-content:center; }
+  .grille4 .cell .top { display:flex; justify-content:space-between; align-items:baseline; }
+  .grille4 .cell .nom { font-size:15px; font-weight:800; }
+  .grille4 .cell .pct { font-size:20px; font-weight:900; }
+  .grille4 .cell .gaugewrap { height:14px; border:1.5px solid #000; display:flex; overflow:hidden; margin: 6px 0; }
+  .grille4 .cell .g1 { background:#000; }
+  .grille4 .cell .g2 { background:#ccc; }
+  .grille4 .cell .ecart-mini { font-size:10px; font-weight:700; color:#444; text-align:center; }
 </style>
 
+{% if ecran == "classement" %}
 {% if affichage == "sondage_t1" or affichage == "resultat_t1" %}
 <div class="elec">
   <div class="header">
@@ -158,6 +190,125 @@
     <div>
       {% if source == "Sondage" %}Enquête du {{ jeu.debut_enquete }} au {{ jeu.fin_enquete }} · {{ jeu.echantillon }} pers.{% else %}Résultats officiels — {{ jeu.fin_enquete }}{% endif %}
     </div>
+  </div>
+</div>
+{% endif %}
+{% endif %}
+
+{% if ecran == "tendance" %}
+<div class="elec lignes">
+  <div class="header">
+    <div class="title">PRÉSIDENTIELLE 2027 · Tendance 1er tour</div>
+    <div class="subtitle">Évolution du {{ tendance_t1.date_debut }} au {{ tendance_t1.date_fin }}</div>
+  </div>
+  <div style="padding: 8px 30px 0 30px;">
+    <svg viewBox="0 0 {{ tendance_t1.largeur }} {{ tendance_t1.hauteur }}" width="740" height="330">
+      {% for s in tendance_t1.series %}
+        {% if s.style == "plein" %}
+          <polyline points="{{ s.points }}" fill="none" stroke="#000" stroke-width="3.5" />
+        {% elsif s.style == "tirets" %}
+          <polyline points="{{ s.points }}" fill="none" stroke="#000" stroke-width="3" stroke-dasharray="10,6" />
+        {% elsif s.style == "gris" %}
+          <polyline points="{{ s.points }}" fill="none" stroke="#888" stroke-width="3.5" />
+        {% else %}
+          <polyline points="{{ s.points }}" fill="none" stroke="#555" stroke-width="3" stroke-dasharray="2,5" stroke-linecap="round" />
+        {% endif %}
+        <circle cx="{{ s.derniere_x }}" cy="{{ s.point_y }}" r="4.5" fill="#000" />
+        <line x1="{{ s.derniere_x }}" y1="{{ s.point_y }}" x2="{{ s.derniere_x | plus: 6 }}" y2="{{ s.label_y }}" stroke="#999" stroke-width="1.5" />
+        <text x="{{ s.derniere_x | plus: 10 }}" y="{{ s.label_y | plus: 5 }}" font-size="16" font-weight="800" text-anchor="start">{{ s.nom_court }} {{ s.derniere_valeur | replace: ".", "," }}%</text>
+      {% endfor %}
+    </svg>
+  </div>
+  <div class="footer">
+    <div>{{ tendance_t1.series.size }} candidats de tête suivis dans le temps</div>
+    <div>Source : MieuxVoter — agrégation de {{ nb_hypotheses_t1 }} hypothèses par vague</div>
+  </div>
+</div>
+{% endif %}
+
+{% if ecran == "hypotheses" %}
+<div class="elec lignes">
+  <div class="header">
+    <div class="title">PRÉSIDENTIELLE 2027</div>
+    <div class="subtitle">Toutes les hypothèses — {{ toutes_hypotheses_t1.size }} scénarios testés (1er tour)</div>
+  </div>
+  <div class="liste">
+    {% for h in toutes_hypotheses_t1 %}
+    <div class="carte">
+      <div class="tag{% if h.reference %} ref{% endif %}">{{ h.hypothese }}</div>
+      <div class="desc">{{ h.description }}</div>
+      <div class="vals">
+        {% for c in h.candidats %}{{ c.nom_court }} {{ c.intentions | replace: ".", "," }}%{% unless forloop.last %} · {% endunless %}{% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="footer">
+    <div>{{ sondage_t1.institut }}</div>
+    <div>Enquête du {{ sondage_t1.debut_enquete }} au {{ sondage_t1.fin_enquete }}</div>
+  </div>
+</div>
+{% endif %}
+
+{% if ecran == "instituts" %}
+<div class="elec lignes">
+  <div class="header">
+    <div class="title">PRÉSIDENTIELLE 2027</div>
+    <div class="subtitle">Comparatif instituts — dernier sondage de chacun (1er tour)</div>
+  </div>
+  <div class="liste">
+    {% for i in comparatif_instituts_t1 %}
+    <div class="carte">
+      <div class="inst-name">{{ i.institut }}</div>
+      <div class="inst-date">{{ i.fin_enquete }}</div>
+      <div class="vals">
+        {% for c in i.candidats %}{{ c.nom_court }} {{ c.intentions | replace: ".", "," }}%{% unless forloop.last %} · {% endunless %}{% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="footer">
+    <div>{{ comparatif_instituts_t1.size }} instituts comparés</div>
+    <div>Source : MieuxVoter</div>
+  </div>
+</div>
+{% endif %}
+
+{% if ecran == "duels" %}
+<div class="elec">
+  <div class="header">
+    <div>
+      <div class="title">PRÉSIDENTIELLE 2027</div>
+      <div class="subtitle">Grille des duels 2nd tour envisagés</div>
+    </div>
+    <div class="countdown">
+      <div class="num">J-{{ election.jours_avant_t1 }}</div>
+      <div class="lbl">avant le 1er tour</div>
+    </div>
+  </div>
+  <div style="display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap:10px; padding: 12px 20px 0 20px; height: 330px;" class="grille4">
+    {% for d in grille_duels_t2 %}
+    <div class="cell">
+      {% for c in d.candidats %}
+        {% if forloop.first %}{% assign gg1 = c.intentions %}{% endif %}
+        <div class="top">
+          <div class="nom">{{ c.nom_court }}</div>
+          <div class="pct">{{ c.intentions | replace: ".", "," }}%</div>
+        </div>
+        {% if forloop.index == 2 %}
+        <div class="gaugewrap">
+          <div class="g1" style="width:{{ gg1 }}%"></div>
+          <div class="g2" style="width:{{ c.intentions }}%"></div>
+        </div>
+        {% endif %}
+      {% endfor %}
+      <div class="ecart-mini">{{ d.ecart | replace: ".", "," }} pts d'écart</div>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="footer">
+    <div>{{ grille_duels_t2.size }} hypothèses de duel testées</div>
+    <div>Source : MieuxVoter — dernière vague 2nd tour</div>
   </div>
 </div>
 {% endif %}
