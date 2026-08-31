@@ -131,6 +131,155 @@ function determinerAffichage(phase, resultats_t1, resultats_t2) {
   return "sondage_t1";
 }
 
+// --- Écran "Tendance" -------------------------------------------------
+// Calcule directement les points SVG (polyline) pour chaque candidat,
+// pour éviter de faire des maths dans le Liquid de TRMNL.
+function calculerTendance(polls, tour) {
+  const pourTour = polls.filter((p) => p.tour === tour);
+  const dates = [...new Set(pourTour.map((p) => p.fin_enquete))].sort();
+  const dernieresDates = dates.slice(-8);
+  if (dernieresDates.length < 2) return null;
+
+  const snapshotParDate = dernieresDates.map((d) => {
+    const ceJourLa = pourTour.filter((p) => p.fin_enquete === d);
+    ceJourLa.sort((a, b) => b.candidats.length - a.candidats.length);
+    return { date: d, poll: ceJourLa[0] };
+  });
+
+  const dernierPoll = snapshotParDate[snapshotParDate.length - 1].poll;
+  const top4Ids = [...dernierPoll.candidats]
+    .sort((a, b) => b.intentions - a.intentions)
+    .slice(0, 4)
+    .map((c) => c.candidate_id);
+
+  const LARGEUR = 700;
+  const HAUTEUR = 320;
+  const MARGE_X = 10;
+  const MARGE_DROITE = 140; // réserve la place pour les étiquettes de fin de ligne
+  const MARGE_Y = 16;
+  const n = dernieresDates.length;
+
+  let toutesValeurs = [];
+  const brut = top4Ids.map((id) => {
+    const ref = dernierPoll.candidats.find((c) => c.candidate_id === id);
+    const vals = snapshotParDate.map((s) => {
+      const c = s.poll.candidats.find((cc) => cc.candidate_id === id);
+      if (c) toutesValeurs.push(c.intentions);
+      return c ? c.intentions : null;
+    });
+    return { id, nom_court: ref.surname || ref.complete_name, parti: ref.parti, vals };
+  });
+
+  const minV = Math.floor(Math.min(...toutesValeurs) - 1.5);
+  const maxV = Math.ceil(Math.max(...toutesValeurs) + 1.5);
+
+  const xFor = (i) => MARGE_X + (i * (LARGEUR - MARGE_DROITE - MARGE_X)) / (n - 1);
+  const yFor = (v) => HAUTEUR - MARGE_Y - ((v - minV) / (maxV - minV)) * (HAUTEUR - 2 * MARGE_Y);
+
+  const styles = ["plein", "tirets", "gris", "pointille"];
+  const series = brut.map((s, idx) => {
+    const pts = [];
+    s.vals.forEach((v, i) => {
+      if (v !== null) pts.push(`${xFor(i).toFixed(1)},${yFor(v).toFixed(1)}`);
+    });
+    const derniereVal = [...s.vals].reverse().find((v) => v !== null);
+    const pointY = yFor(derniereVal);
+    return {
+      nom_court: s.nom_court,
+      parti: s.parti,
+      points: pts.join(" "),
+      style: styles[idx] || "plein",
+      derniere_valeur: derniereVal,
+      derniere_x: xFor(n - 1).toFixed(1),
+      point_y: pointY.toFixed(1),
+      label_y: pointY,
+    };
+  });
+
+  // Évite que les étiquettes de fin de ligne se chevauchent quand deux
+  // candidats ont des scores proches : on les trie par position verticale
+  // puis on impose un écart minimum entre étiquettes consécutives (le
+  // point sur la courbe, lui, reste à sa vraie position).
+  const ECART_MIN_LABEL = 26;
+  const parY = [...series].sort((a, b) => a.label_y - b.label_y);
+  for (let i = 1; i < parY.length; i++) {
+    if (parY[i].label_y - parY[i - 1].label_y < ECART_MIN_LABEL) {
+      parY[i].label_y = parY[i - 1].label_y + ECART_MIN_LABEL;
+    }
+  }
+  series.forEach((s) => {
+    s.label_y = s.label_y.toFixed(1);
+  });
+
+  return {
+    largeur: LARGEUR,
+    hauteur: HAUTEUR,
+    date_debut: dernieresDates[0],
+    date_fin: dernieresDates[dernieresDates.length - 1],
+    series,
+  };
+}
+
+// --- Écran "Toutes les hypothèses" ------------------------------------
+function calculerToutesHypotheses(polls, tour) {
+  const vague = vagueLaPlusRecente(polls, tour);
+  if (vague.length === 0) return [];
+  const parNb = [...vague].sort((a, b) => b.candidats.length - a.candidats.length);
+  const principale = parNb[0];
+  return parNb.map((p) => ({
+    hypothese: p.hypothese,
+    reference: p.hypothese === principale.hypothese,
+    description:
+      p.hypothese === principale.hypothese ? "Hypothèse de référence" : decrireDifference(principale, p),
+    candidats: formatCandidats(p, 3),
+  }));
+}
+
+// --- Écran "Comparatif instituts" -------------------------------------
+function calculerComparatifInstituts(polls, tour, max) {
+  const pourTour = polls.filter((p) => p.tour === tour);
+  const parInstitut = {};
+  pourTour.forEach((p) => {
+    const cur = parInstitut[p.institut];
+    if (
+      !cur ||
+      p.fin_enquete > cur.fin_enquete ||
+      (p.fin_enquete === cur.fin_enquete && p.candidats.length > cur.candidats.length)
+    ) {
+      parInstitut[p.institut] = p;
+    }
+  });
+  return Object.values(parInstitut)
+    .sort((a, b) => b.fin_enquete.localeCompare(a.fin_enquete))
+    .slice(0, max)
+    .map((p) => ({
+      institut: p.institut,
+      fin_enquete: p.fin_enquete,
+      candidats: formatCandidats(p, 3),
+    }));
+}
+
+// --- Écran "Grille des duels 2nd tour" --------------------------------
+function calculerGrilleDuels(polls, max) {
+  const vague = vagueLaPlusRecente(polls, "2nd Tour");
+  return vague
+    .map((p) => {
+      const tries = [...p.candidats].sort((a, b) => b.intentions - a.intentions);
+      const ecart = tries.length === 2 ? Math.round((tries[0].intentions - tries[1].intentions) * 10) / 10 : null;
+      return {
+        hypothese: p.hypothese,
+        ecart,
+        candidats: tries.map((c) => ({
+          nom_court: c.surname || c.complete_name,
+          parti: c.parti,
+          intentions: c.intentions,
+        })),
+      };
+    })
+    .sort((a, b) => (a.ecart ?? 999) - (b.ecart ?? 999))
+    .slice(0, max);
+}
+
 async function main() {
   const res = await fetch(POLLS_URL);
   if (!res.ok) throw new Error(`Échec récupération sondages: HTTP ${res.status}`);
@@ -154,6 +303,11 @@ async function main() {
     nb_hypotheses_t1: vagueT1.nb_hypotheses,
     sondage_t2: vagueT2.principale,
     nb_hypotheses_t2: vagueT2.nb_hypotheses,
+    // Écrans additionnels, pilotés par le champ de config TRMNL "ecran"
+    tendance_t1: calculerTendance(polls, "1er Tour"),
+    toutes_hypotheses_t1: calculerToutesHypotheses(polls, "1er Tour"),
+    comparatif_instituts_t1: calculerComparatifInstituts(polls, "1er Tour", 6),
+    grille_duels_t2: calculerGrilleDuels(polls, 4),
     // Résultats officiels : structure prête, alimentée le soir du scrutin
     // (le flux exact du ministère de l'Intérieur sera identifié à l'approche
     // de la date, comme pour les scrutins précédents).
