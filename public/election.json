@@ -1,0 +1,161 @@
+{
+  "genere_le": "2026-08-31T11:47:15.191Z",
+  "phase": "sondages",
+  "election": {
+    "premier_tour": "2027-04-18",
+    "second_tour": "2027-05-02",
+    "jours_avant_t1": 230,
+    "jours_avant_t2": 244
+  },
+  "sondage_t1": {
+    "institut": "ELABE",
+    "commanditaire": "BFMTV, La Tribune Dimanche",
+    "debut_enquete": "2026-08-26",
+    "fin_enquete": "2026-08-28",
+    "echantillon": 1501,
+    "hypothese": "H50",
+    "candidats": [
+      {
+        "rang": 1,
+        "id": "MLP",
+        "nom": "Marine Le Pen",
+        "nom_court": "Le Pen",
+        "parti": "Rassemblement National",
+        "intentions": 34,
+        "erreur_sup": 2.5,
+        "erreur_inf": -2.5
+      },
+      {
+        "rang": 2,
+        "id": "EP",
+        "nom": "Édouard Philippe",
+        "nom_court": "Philippe",
+        "parti": "Horizon",
+        "intentions": 17,
+        "erreur_sup": 1.98,
+        "erreur_inf": -1.98
+      },
+      {
+        "rang": 3,
+        "id": "JLM",
+        "nom": "Jean-Luc Mélenchon",
+        "nom_court": "Mélenchon",
+        "parti": "La France Insoumise",
+        "intentions": 14,
+        "erreur_sup": 1.83,
+        "erreur_inf": -1.83
+      },
+      {
+        "rang": 4,
+        "id": "RG",
+        "nom": "Raphaël Glucksmann",
+        "nom_court": "Glucksmann",
+        "parti": "Place Publique",
+        "intentions": 11.5,
+        "erreur_sup": 1.68,
+        "erreur_inf": -1.68
+      },
+      {
+        "rang": 5,
+        "id": "BR",
+        "nom": "Bruno Retailleau",
+        "nom_court": "Retailleau",
+        "parti": "Les Républicains",
+        "intentions": 6.5,
+        "erreur_sup": 1.3,
+        "erreur_inf": -1.3
+      },
+      {
+        "rang": 6,
+        "id": "EZ",
+        "nom": "Éric Zemmour",
+        "nom_court": "Zemmour",
+        "parti": "Reconquête",
+        "intentions": 4,
+        "erreur_sup": 1.03,
+        "erreur_inf": -1.03
+      },
+      {
+        "rang": 7,
+        "id": "MT",
+        "nom": "Marine Tondelier",
+        "nom_court": "Tondelier",
+        "parti": "Europe Écologie Les Verts",
+        "intentions": 3.5,
+        "erreur_sup": 0.97,
+        "erreur_inf": -0.97
+      }
+    ]
+  },
+  "hypothese_alt_t1": {
+    "hypothese": "H52",
+    "description": "avec Gabriel Attal · sans Édouard Philippe",
+    "candidats": [
+      {
+        "rang": 1,
+        "id": "MLP",
+        "nom": "Marine Le Pen",
+        "nom_court": "Le Pen",
+        "parti": "Rassemblement National",
+        "intentions": 34.5,
+        "erreur_sup": 2.51,
+        "erreur_inf": -2.51
+      },
+      {
+        "rang": 2,
+        "id": "JLM",
+        "nom": "Jean-Luc Mélenchon",
+        "nom_court": "Mélenchon",
+        "parti": "La France Insoumise",
+        "intentions": 14,
+        "erreur_sup": 1.83,
+        "erreur_inf": -1.83
+      },
+      {
+        "rang": 3,
+        "id": "RG",
+        "nom": "Raphaël Glucksmann",
+        "nom_court": "Glucksmann",
+        "parti": "Place Publique",
+        "intentions": 14,
+        "erreur_sup": 1.83,
+        "erreur_inf": -1.83
+      }
+    ]
+  },
+  "nb_hypotheses_t1": 6,
+  "sondage_t2": {
+    "institut": "ELABE",
+    "commanditaire": "BFMTV, La Tribune Dimanche",
+    "debut_enquete": "2026-08-26",
+    "fin_enquete": "2026-08-28",
+    "echantillon": 1501,
+    "hypothese": "H2_9",
+    "candidats": [
+      {
+        "rang": 1,
+        "id": "MLP",
+        "nom": "Marine Le Pen",
+        "nom_court": "Le Pen",
+        "parti": "Rassemblement National",
+        "intentions": 69.5,
+        "erreur_sup": 2.43,
+        "erreur_inf": -2.43
+      },
+      {
+        "rang": 2,
+        "id": "JLM",
+        "nom": "Jean-Luc Mélenchon",
+        "nom_court": "Mélenchon",
+        "parti": "La France Insoumise",
+        "intentions": 30.5,
+        "erreur_sup": 2.43,
+        "erreur_inf": -2.43
+      }
+    ]
+  },
+  "nb_hypotheses_t2": 4,
+  "resultats_t1": null,
+  "resultats_t2": null,
+  "affichage": "sondage_t1"
+}
