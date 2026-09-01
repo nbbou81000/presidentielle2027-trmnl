@@ -1,5 +1,5 @@
 {
-  "genere_le": "2026-09-01T11:47:29.236Z",
+  "genere_le": "2026-09-01T11:49:11.749Z",
   "phase": "sondages",
   "election": {
     "premier_tour": "2027-04-18",
@@ -709,6 +709,176 @@
           "intentions": 30.5
         }
       ]
+    }
+  ],
+  "tous_candidats_t1": [
+    {
+      "nom": "Marine Le Pen",
+      "nom_court": "Le Pen",
+      "parti": "Rassemblement National",
+      "intentions": 34,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Édouard Philippe",
+      "nom_court": "Philippe",
+      "parti": "Horizon",
+      "intentions": 17,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Jean-Luc Mélenchon",
+      "nom_court": "Mélenchon",
+      "parti": "La France Insoumise",
+      "intentions": 14,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Gabriel Attal",
+      "nom_court": "Attal",
+      "parti": "La République En Marche",
+      "intentions": 12,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Raphaël Glucksmann",
+      "nom_court": "Glucksmann",
+      "parti": "Place Publique",
+      "intentions": 11.5,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "François Hollande",
+      "nom_court": "Hollande",
+      "parti": "Parti Socialiste",
+      "intentions": 7.5,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Bruno Retailleau",
+      "nom_court": "Retailleau",
+      "parti": "Les Républicains",
+      "intentions": 6.5,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Sébastien Lecornu",
+      "nom_court": "Lecornu",
+      "parti": "Les Républicains",
+      "intentions": 6.5,
+      "derniere_maj": "2026-03-27",
+      "retrait": null
+    },
+    {
+      "nom": "François Ruffin",
+      "nom_court": "Ruffin",
+      "parti": "La France Insoumise",
+      "intentions": 6,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Bruno Le Maire",
+      "nom_court": "Le Maire",
+      "parti": "",
+      "intentions": 6,
+      "derniere_maj": "2026-08-25",
+      "retrait": null
+    },
+    {
+      "nom": "Xavier Bertrand",
+      "nom_court": "Bertrand",
+      "parti": "Les Républicains",
+      "intentions": 5.5,
+      "derniere_maj": "2025-10-31",
+      "retrait": null
+    },
+    {
+      "nom": "Sarah Knafo",
+      "nom_court": "Knafo",
+      "parti": "",
+      "intentions": 5,
+      "derniere_maj": "2026-03-27",
+      "retrait": null
+    },
+    {
+      "nom": "Philippe de Villiers",
+      "nom_court": "de Villiers",
+      "parti": "",
+      "intentions": 4.5,
+      "derniere_maj": "2025-10-31",
+      "retrait": null
+    },
+    {
+      "nom": "Éric Zemmour",
+      "nom_court": "Zemmour",
+      "parti": "Reconquête",
+      "intentions": 4,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Olivier Faure",
+      "nom_court": "Faure",
+      "parti": "Parti Socialiste",
+      "intentions": 3.5,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Marine Tondelier",
+      "nom_court": "Tondelier",
+      "parti": "Europe Écologie Les Verts",
+      "intentions": 3.5,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Fabien Roussel",
+      "nom_court": "Roussel",
+      "parti": "Parti Communiste Français",
+      "intentions": 3,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Nicolas Dupont-Aignan",
+      "nom_court": "Dupont-Aignan",
+      "parti": "",
+      "intentions": 3,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "David Lisnard",
+      "nom_court": "Lisnard",
+      "parti": "Les Républicains",
+      "intentions": 3,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Dominique de Villepin",
+      "nom_court": "de Villepin",
+      "parti": "",
+      "intentions": 2,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
+    },
+    {
+      "nom": "Nathalie Arthaud",
+      "nom_court": "Arthaud",
+      "parti": "Lutte Ouvrière",
+      "intentions": 1.5,
+      "derniere_maj": "2026-08-28",
+      "retrait": null
     }
   ],
   "resultats_t1": null,
