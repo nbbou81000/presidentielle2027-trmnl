@@ -220,6 +220,34 @@ function calculerTendance(polls, tour) {
   };
 }
 
+// --- Écran "Tous les candidats" ----------------------------------------
+// Union de tous les candidats apparus dans au moins un sondage (toutes
+// hypothèses confondues, tous tours), avec la dernière intention connue
+// de chacun. Exclut les candidats ayant officiellement retiré leur
+// candidature (champ retrait_candidature renseigné dans la source).
+function calculerTousCandidats(polls, tour) {
+  const pourTour = polls.filter((p) => p.tour === tour);
+  const parId = {};
+  pourTour.forEach((p) => {
+    p.candidats.forEach((c) => {
+      const cur = parId[c.candidate_id];
+      if (!cur || p.fin_enquete > cur.derniere_maj) {
+        parId[c.candidate_id] = {
+          nom: c.complete_name,
+          nom_court: c.surname || c.complete_name,
+          parti: c.parti,
+          intentions: c.intentions,
+          derniere_maj: p.fin_enquete,
+          retrait: c.retrait_candidature || null,
+        };
+      }
+    });
+  });
+  return Object.values(parId)
+    .filter((c) => !c.retrait)
+    .sort((a, b) => b.intentions - a.intentions);
+}
+
 // --- Écran "Toutes les hypothèses" ------------------------------------
 function calculerToutesHypotheses(polls, tour) {
   const vague = vagueLaPlusRecente(polls, tour);
@@ -308,6 +336,7 @@ async function main() {
     toutes_hypotheses_t1: calculerToutesHypotheses(polls, "1er Tour"),
     comparatif_instituts_t1: calculerComparatifInstituts(polls, "1er Tour", 6),
     grille_duels_t2: calculerGrilleDuels(polls, 4),
+    tous_candidats_t1: calculerTousCandidats(polls, "1er Tour"),
     // Résultats officiels : structure prête, alimentée le soir du scrutin
     // (le flux exact du ministère de l'Intérieur sera identifié à l'approche
     // de la date, comme pour les scrutins précédents).
