@@ -1,5 +1,5 @@
 {
-  "genere_le": "2026-09-02T14:28:41.056Z",
+  "genere_le": "2026-09-02T18:41:07.658Z",
   "phase": "sondages",
   "election": {
     "premier_tour": "2027-04-18",
@@ -158,13 +158,13 @@
   "tendance_t1": {
     "largeur": 700,
     "hauteur": 320,
-    "date_debut": "2026-06-11",
+    "date_debut": "2026-06-24",
     "date_fin": "2026-08-28",
     "series": [
       {
         "nom_court": "Le Pen",
         "parti": "Rassemblement National",
-        "points": "167.1,34.6 245.7,84.7 324.3,34.6 402.9,34.6 481.4,53.2 560.0,43.9",
+        "points": "88.6,34.6 167.1,84.7 245.7,34.6 324.3,80.1 402.9,34.6 481.4,53.2 560.0,43.9",
         "style": "plein",
         "derniere_valeur": 34,
         "derniere_x": "560.0",
@@ -174,7 +174,7 @@
       {
         "nom_court": "Philippe",
         "parti": "Horizon",
-        "points": "88.6,229.7 167.1,229.7 245.7,233.4 324.3,206.5 402.9,229.7 481.4,225.0 560.0,201.8",
+        "points": "10.0,229.7 88.6,229.7 167.1,233.4 245.7,206.5 324.3,191.6 402.9,229.7 481.4,225.0 560.0,201.8",
         "style": "tirets",
         "derniere_valeur": 17,
         "derniere_x": "560.0",
@@ -184,7 +184,7 @@
       {
         "nom_court": "Mélenchon",
         "parti": "La France Insoumise",
-        "points": "10.0,239.0 88.6,239.0 167.1,211.1 245.7,201.8 324.3,211.1 402.9,211.1 481.4,211.1 560.0,229.7",
+        "points": "10.0,239.0 88.6,211.1 167.1,201.8 245.7,211.1 324.3,190.7 402.9,211.1 481.4,211.1 560.0,229.7",
         "style": "gris",
         "derniere_valeur": 14,
         "derniere_x": "560.0",
@@ -194,7 +194,7 @@
       {
         "nom_court": "Glucksmann",
         "parti": "Place Publique",
-        "points": "10.0,229.7 88.6,276.1 167.1,266.8 245.7,288.2 324.3,262.2 402.9,266.8 481.4,257.5 560.0,252.9",
+        "points": "10.0,276.1 88.6,266.8 167.1,288.2 245.7,262.2 324.3,265.0 402.9,266.8 481.4,257.5 560.0,252.9",
         "style": "pointille",
         "derniere_valeur": 11.5,
         "derniere_x": "560.0",
@@ -537,6 +537,42 @@
       ]
     },
     {
+      "institut": "Cluster17",
+      "fin_enquete": "2026-07-24",
+      "candidats": [
+        {
+          "rang": 1,
+          "id": "MLP",
+          "nom": "Marine Le Pen",
+          "nom_court": "Le Pen",
+          "parti": "Rassemblement National",
+          "intentions": 30.1,
+          "erreur_sup": 2.8,
+          "erreur_inf": -2.8
+        },
+        {
+          "rang": 2,
+          "id": "JLM",
+          "nom": "Jean-Luc Mélenchon",
+          "nom_court": "Mélenchon",
+          "parti": "La France Insoumise",
+          "intentions": 18.2,
+          "erreur_sup": 2.35,
+          "erreur_inf": -2.35
+        },
+        {
+          "rang": 3,
+          "id": "EP",
+          "nom": "Édouard Philippe",
+          "nom_court": "Philippe",
+          "parti": "Horizon",
+          "intentions": 18.1,
+          "erreur_sup": 2.35,
+          "erreur_inf": -2.35
+        }
+      ]
+    },
+    {
       "institut": "Verian",
       "fin_enquete": "2026-07-10",
       "candidats": [
@@ -569,42 +605,6 @@
           "intentions": 15,
           "erreur_sup": 2.45,
           "erreur_inf": -2.45
-        }
-      ]
-    },
-    {
-      "institut": "Cluster17",
-      "fin_enquete": "2026-07-09",
-      "candidats": [
-        {
-          "rang": 1,
-          "id": "MLP",
-          "nom": "Marine Le Pen",
-          "nom_court": "Le Pen",
-          "parti": "Rassemblement National",
-          "intentions": 29.6,
-          "erreur_sup": 2.09,
-          "erreur_inf": -2.09
-        },
-        {
-          "rang": 2,
-          "id": "JLM",
-          "nom": "Jean-Luc Mélenchon",
-          "nom_court": "Mélenchon",
-          "parti": "La France Insoumise",
-          "intentions": 17,
-          "erreur_sup": 1.72,
-          "erreur_inf": -1.72
-        },
-        {
-          "rang": 3,
-          "id": "EP",
-          "nom": "Édouard Philippe",
-          "nom_court": "Philippe",
-          "parti": "Horizon",
-          "intentions": 13.6,
-          "erreur_sup": 1.57,
-          "erreur_inf": -1.57
         }
       ]
     },
