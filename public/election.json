@@ -1,11 +1,11 @@
 {
-  "genere_le": "2026-09-03T21:42:03.864Z",
+  "genere_le": "2026-09-04T00:05:18.006Z",
   "phase": "sondages",
   "election": {
     "premier_tour": "2027-04-18",
     "second_tour": "2027-05-02",
-    "jours_avant_t1": 227,
-    "jours_avant_t2": 241
+    "jours_avant_t1": 226,
+    "jours_avant_t2": 240
   },
   "sondage_t1": {
     "institut": "ELABE",
