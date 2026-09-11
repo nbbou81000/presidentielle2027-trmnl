@@ -1,11 +1,11 @@
 {
-  "genere_le": "2026-09-10T22:34:42.710Z",
+  "genere_le": "2026-09-11T01:03:52.053Z",
   "phase": "sondages",
   "election": {
     "premier_tour": "2027-04-18",
     "second_tour": "2027-05-02",
-    "jours_avant_t1": 220,
-    "jours_avant_t2": 234
+    "jours_avant_t1": 219,
+    "jours_avant_t2": 233
   },
   "sondage_t1": {
     "institut": "OpinionWay",
