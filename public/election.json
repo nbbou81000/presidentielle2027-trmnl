@@ -1,5 +1,5 @@
 {
-  "genere_le": "2026-09-15T18:10:58.337Z",
+  "genere_le": "2026-09-15T21:22:39.438Z",
   "phase": "sondages",
   "election": {
     "premier_tour": "2027-04-18",
@@ -674,6 +674,14 @@
       "retrait": null
     },
     {
+      "nom": "Michel Barnier",
+      "nom_court": "Barnier",
+      "parti": "Les Républicains",
+      "intentions": 4,
+      "derniere_maj": "2024-09-12",
+      "retrait": null
+    },
+    {
       "nom": "François Ruffin",
       "nom_court": "Ruffin",
       "parti": "La France Insoumise",
@@ -743,6 +751,14 @@
       "parti": "Lutte Ouvrière",
       "intentions": 1,
       "derniere_maj": "2026-09-10",
+      "retrait": null
+    },
+    {
+      "nom": "Sandrine Rousseau",
+      "nom_court": "Rousseau",
+      "parti": "Europe Écologie Les Verts",
+      "intentions": 1,
+      "derniere_maj": "2024-09-12",
       "retrait": null
     },
     {
