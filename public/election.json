@@ -1,11 +1,11 @@
 {
-  "genere_le": "2026-09-15T21:22:39.438Z",
+  "genere_le": "2026-09-16T00:18:09.771Z",
   "phase": "sondages",
   "election": {
     "premier_tour": "2027-04-18",
     "second_tour": "2027-05-02",
-    "jours_avant_t1": 215,
-    "jours_avant_t2": 229
+    "jours_avant_t1": 214,
+    "jours_avant_t2": 228
   },
   "sondage_t1": {
     "institut": "OpinionWay",
@@ -123,13 +123,13 @@
       }
     ]
   },
-  "nb_hypotheses_t1": 3,
+  "nb_hypotheses_t1": 8,
   "sondage_t2": {
-    "institut": "OpinionWay",
-    "commanditaire": "CNews",
-    "debut_enquete": "2026-09-09",
+    "institut": "Harris Interactive",
+    "commanditaire": "M6, RTL",
+    "debut_enquete": "2026-09-08",
     "fin_enquete": "2026-09-10",
-    "echantillon": 1001,
+    "echantillon": 2358,
     "hypothese": "H2_9",
     "candidats": [
       {
@@ -139,8 +139,8 @@
         "nom_court": "Le Pen",
         "parti": "Rassemblement National",
         "intentions": 67,
-        "erreur_sup": 3.51,
-        "erreur_inf": -3.51
+        "erreur_sup": 2.76,
+        "erreur_inf": -2.76
       },
       {
         "rang": 2,
@@ -149,57 +149,57 @@
         "nom_court": "Mélenchon",
         "parti": "La France Insoumise",
         "intentions": 33,
-        "erreur_sup": 3.51,
-        "erreur_inf": -3.51
+        "erreur_sup": 2.76,
+        "erreur_inf": -2.76
       }
     ]
   },
-  "nb_hypotheses_t2": 2,
+  "nb_hypotheses_t2": 5,
   "tendance_t1": {
     "largeur": 700,
     "hauteur": 320,
-    "date_debut": "2026-08-19",
+    "date_debut": "2026-08-25",
     "date_fin": "2026-09-10",
     "series": [
       {
         "nom_court": "Le Pen",
         "parti": "Rassemblement National",
-        "points": "10.0,34.0 88.6,52.0 167.1,43.0 245.7,86.2 324.3,43.0 402.9,43.0 481.4,43.0 560.0,61.0",
+        "points": "10.0,43.0 88.6,34.0 167.1,77.2 245.7,34.0 324.3,34.0 402.9,34.0 481.4,43.0 560.0,52.0",
         "style": "plein",
         "derniere_valeur": 32,
         "derniere_x": "560.0",
-        "point_y": "61.0",
-        "label_y": "61.0"
+        "point_y": "52.0",
+        "label_y": "52.0"
       },
       {
         "nom_court": "Mélenchon",
         "parti": "La France Insoumise",
-        "points": "10.0,205.0 88.6,205.0 167.1,223.0 245.7,196.9 324.3,214.0 402.9,196.0 481.4,214.0 560.0,205.0",
+        "points": "10.0,196.0 88.6,214.0 167.1,187.9 245.7,205.0 324.3,187.0 402.9,196.0 481.4,200.5 560.0,196.0",
         "style": "tirets",
         "derniere_valeur": 16,
         "derniere_x": "560.0",
-        "point_y": "205.0",
-        "label_y": "205.0"
+        "point_y": "196.0",
+        "label_y": "196.0"
       },
       {
         "nom_court": "Philippe",
         "parti": "Horizon",
-        "points": "10.0,223.0 88.6,218.5 167.1,196.0 245.7,197.8 324.3,218.5 402.9,214.0 481.4,214.0 560.0,205.0",
+        "points": "10.0,209.5 88.6,187.0 167.1,188.8 245.7,209.5 324.3,205.0 402.9,205.0 481.4,214.0 560.0,196.0",
         "style": "gris",
         "derniere_valeur": 16,
         "derniere_x": "560.0",
-        "point_y": "205.0",
-        "label_y": "231.0"
+        "point_y": "196.0",
+        "label_y": "222.0"
       },
       {
         "nom_court": "Attal",
         "parti": "La République En Marche",
-        "points": "10.0,277.0 88.6,277.0 324.3,281.5 402.9,286.0 481.4,277.0 560.0,277.0",
+        "points": "10.0,268.0 245.7,272.5 324.3,277.0 402.9,277.0 481.4,286.0 560.0,268.0",
         "style": "pointille",
         "derniere_valeur": 8,
         "derniere_x": "560.0",
-        "point_y": "277.0",
-        "label_y": "277.0"
+        "point_y": "268.0",
+        "label_y": "268.0"
       }
     ]
   },
@@ -314,9 +314,230 @@
           "erreur_inf": -2.66
         }
       ]
+    },
+    {
+      "hypothese": "H67",
+      "reference": false,
+      "description": "avec Raphaël Glucksmann · sans François Hollande, Karim Bouamrane, David Lisnard",
+      "candidats": [
+        {
+          "rang": 1,
+          "id": "MLP",
+          "nom": "Marine Le Pen",
+          "nom_court": "Le Pen",
+          "parti": "Rassemblement National",
+          "intentions": 33,
+          "erreur_sup": 2.52,
+          "erreur_inf": -2.52
+        },
+        {
+          "rang": 2,
+          "id": "JLM",
+          "nom": "Jean-Luc Mélenchon",
+          "nom_court": "Mélenchon",
+          "parti": "La France Insoumise",
+          "intentions": 16,
+          "erreur_sup": 1.96,
+          "erreur_inf": -1.96
+        },
+        {
+          "rang": 3,
+          "id": "EP",
+          "nom": "Édouard Philippe",
+          "nom_court": "Philippe",
+          "parti": "Horizon",
+          "intentions": 14,
+          "erreur_sup": 1.86,
+          "erreur_inf": -1.86
+        }
+      ]
+    },
+    {
+      "hypothese": "H42",
+      "reference": false,
+      "description": "avec Raphaël Glucksmann · sans François Hollande, Karim Bouamrane, Gabriel Attal, David Lisnard",
+      "candidats": [
+        {
+          "rang": 1,
+          "id": "MLP",
+          "nom": "Marine Le Pen",
+          "nom_court": "Le Pen",
+          "parti": "Rassemblement National",
+          "intentions": 34,
+          "erreur_sup": 2.56,
+          "erreur_inf": -2.56
+        },
+        {
+          "rang": 2,
+          "id": "JLM",
+          "nom": "Jean-Luc Mélenchon",
+          "nom_court": "Mélenchon",
+          "parti": "La France Insoumise",
+          "intentions": 17,
+          "erreur_sup": 2.03,
+          "erreur_inf": -2.03
+        },
+        {
+          "rang": 3,
+          "id": "EP",
+          "nom": "Édouard Philippe",
+          "nom_court": "Philippe",
+          "parti": "Horizon",
+          "intentions": 17,
+          "erreur_sup": 2.03,
+          "erreur_inf": -2.03
+        }
+      ]
+    },
+    {
+      "hypothese": "H44",
+      "reference": false,
+      "description": "avec Raphaël Glucksmann · sans François Hollande, Karim Bouamrane, Édouard Philippe, David Lisnard",
+      "candidats": [
+        {
+          "rang": 1,
+          "id": "MLP",
+          "nom": "Marine Le Pen",
+          "nom_court": "Le Pen",
+          "parti": "Rassemblement National",
+          "intentions": 35,
+          "erreur_sup": 2.59,
+          "erreur_inf": -2.59
+        },
+        {
+          "rang": 2,
+          "id": "JLM",
+          "nom": "Jean-Luc Mélenchon",
+          "nom_court": "Mélenchon",
+          "parti": "La France Insoumise",
+          "intentions": 17,
+          "erreur_sup": 2.04,
+          "erreur_inf": -2.04
+        },
+        {
+          "rang": 3,
+          "id": "GA",
+          "nom": "Gabriel Attal",
+          "nom_court": "Attal",
+          "parti": "La République En Marche",
+          "intentions": 14,
+          "erreur_sup": 1.88,
+          "erreur_inf": -1.88
+        }
+      ]
+    },
+    {
+      "hypothese": "H75",
+      "reference": false,
+      "description": "sans Karim Bouamrane, Gabriel Attal, David Lisnard",
+      "candidats": [
+        {
+          "rang": 1,
+          "id": "MLP",
+          "nom": "Marine Le Pen",
+          "nom_court": "Le Pen",
+          "parti": "Rassemblement National",
+          "intentions": 33,
+          "erreur_sup": 2.55,
+          "erreur_inf": -2.55
+        },
+        {
+          "rang": 2,
+          "id": "EP",
+          "nom": "Édouard Philippe",
+          "nom_court": "Philippe",
+          "parti": "Horizon",
+          "intentions": 19,
+          "erreur_sup": 2.13,
+          "erreur_inf": -2.13
+        },
+        {
+          "rang": 3,
+          "id": "JLM",
+          "nom": "Jean-Luc Mélenchon",
+          "nom_court": "Mélenchon",
+          "parti": "La France Insoumise",
+          "intentions": 17,
+          "erreur_sup": 2.03,
+          "erreur_inf": -2.03
+        }
+      ]
+    },
+    {
+      "hypothese": "H76",
+      "reference": false,
+      "description": "sans Karim Bouamrane, Édouard Philippe, David Lisnard",
+      "candidats": [
+        {
+          "rang": 1,
+          "id": "MLP",
+          "nom": "Marine Le Pen",
+          "nom_court": "Le Pen",
+          "parti": "Rassemblement National",
+          "intentions": 36,
+          "erreur_sup": 2.6,
+          "erreur_inf": -2.6
+        },
+        {
+          "rang": 2,
+          "id": "JLM",
+          "nom": "Jean-Luc Mélenchon",
+          "nom_court": "Mélenchon",
+          "parti": "La France Insoumise",
+          "intentions": 17,
+          "erreur_sup": 2.03,
+          "erreur_inf": -2.03
+        },
+        {
+          "rang": 3,
+          "id": "GA",
+          "nom": "Gabriel Attal",
+          "nom_court": "Attal",
+          "parti": "La République En Marche",
+          "intentions": 15,
+          "erreur_sup": 1.93,
+          "erreur_inf": -1.93
+        }
+      ]
     }
   ],
   "comparatif_instituts_t1": [
+    {
+      "institut": "Harris Interactive",
+      "fin_enquete": "2026-09-10",
+      "candidats": [
+        {
+          "rang": 1,
+          "id": "MLP",
+          "nom": "Marine Le Pen",
+          "nom_court": "Le Pen",
+          "parti": "Rassemblement National",
+          "intentions": 33,
+          "erreur_sup": 2.52,
+          "erreur_inf": -2.52
+        },
+        {
+          "rang": 2,
+          "id": "JLM",
+          "nom": "Jean-Luc Mélenchon",
+          "nom_court": "Mélenchon",
+          "parti": "La France Insoumise",
+          "intentions": 16,
+          "erreur_sup": 1.96,
+          "erreur_inf": -1.96
+        },
+        {
+          "rang": 3,
+          "id": "EP",
+          "nom": "Édouard Philippe",
+          "nom_court": "Philippe",
+          "parti": "Horizon",
+          "intentions": 14,
+          "erreur_sup": 1.86,
+          "erreur_inf": -1.86
+        }
+      ]
+    },
     {
       "institut": "OpinionWay",
       "fin_enquete": "2026-09-10",
@@ -355,7 +576,7 @@
     },
     {
       "institut": "Ipsos BVA",
-      "fin_enquete": "2026-09-02",
+      "fin_enquete": "2026-09-09",
       "candidats": [
         {
           "rang": 1,
@@ -363,9 +584,9 @@
           "nom": "Marine Le Pen",
           "nom_court": "Le Pen",
           "parti": "Rassemblement National",
-          "intentions": 34,
-          "erreur_sup": 2.91,
-          "erreur_inf": -2.91
+          "intentions": 33,
+          "erreur_sup": 0.95,
+          "erreur_inf": -0.95
         },
         {
           "rang": 2,
@@ -373,9 +594,9 @@
           "nom": "Jean-Luc Mélenchon",
           "nom_court": "Mélenchon",
           "parti": "La France Insoumise",
-          "intentions": 15,
-          "erreur_sup": 2.19,
-          "erreur_inf": -2.19
+          "intentions": 15.5,
+          "erreur_sup": 0.73,
+          "erreur_inf": -0.73
         },
         {
           "rang": 3,
@@ -383,9 +604,9 @@
           "nom": "Édouard Philippe",
           "nom_court": "Philippe",
           "parti": "Horizon",
-          "intentions": 14.5,
-          "erreur_sup": 2.16,
-          "erreur_inf": -2.16
+          "intentions": 14,
+          "erreur_sup": 0.7,
+          "erreur_inf": -0.7
         }
       ]
     },
@@ -496,42 +717,6 @@
           "erreur_inf": -2.26
         }
       ]
-    },
-    {
-      "institut": "Harris Interactive",
-      "fin_enquete": "2026-08-19",
-      "candidats": [
-        {
-          "rang": 1,
-          "id": "MLP",
-          "nom": "Marine Le Pen",
-          "nom_court": "Le Pen",
-          "parti": "Rassemblement National",
-          "intentions": 35,
-          "erreur_sup": 2.23,
-          "erreur_inf": -2.23
-        },
-        {
-          "rang": 2,
-          "id": "JLM",
-          "nom": "Jean-Luc Mélenchon",
-          "nom_court": "Mélenchon",
-          "parti": "La France Insoumise",
-          "intentions": 16,
-          "erreur_sup": 1.71,
-          "erreur_inf": -1.71
-        },
-        {
-          "rang": 3,
-          "id": "EP",
-          "nom": "Édouard Philippe",
-          "nom_court": "Philippe",
-          "parti": "Horizon",
-          "intentions": 14,
-          "erreur_sup": 1.62,
-          "erreur_inf": -1.62
-        }
-      ]
     }
   ],
   "grille_duels_t2": [
@@ -548,6 +733,38 @@
           "nom_court": "Philippe",
           "parti": "Horizon",
           "intentions": 45
+        }
+      ]
+    },
+    {
+      "hypothese": "H2_2",
+      "ecart": 10,
+      "candidats": [
+        {
+          "nom_court": "Le Pen",
+          "parti": "Rassemblement National",
+          "intentions": 55
+        },
+        {
+          "nom_court": "Philippe",
+          "parti": "Horizon",
+          "intentions": 45
+        }
+      ]
+    },
+    {
+      "hypothese": "H2_8",
+      "ecart": 12,
+      "candidats": [
+        {
+          "nom_court": "Le Pen",
+          "parti": "Rassemblement National",
+          "intentions": 56
+        },
+        {
+          "nom_court": "Attal",
+          "parti": "La République En Marche",
+          "intentions": 44
         }
       ]
     },
@@ -573,7 +790,7 @@
       "nom": "Marine Le Pen",
       "nom_court": "Le Pen",
       "parti": "Rassemblement National",
-      "intentions": 32,
+      "intentions": 33,
       "derniere_maj": "2026-09-10",
       "retrait": null
     },
@@ -589,7 +806,7 @@
       "nom": "Édouard Philippe",
       "nom_court": "Philippe",
       "parti": "Horizon",
-      "intentions": 16,
+      "intentions": 14,
       "derniere_maj": "2026-09-10",
       "retrait": null
     },
@@ -650,6 +867,14 @@
       "retrait": null
     },
     {
+      "nom": "Éric Zemmour",
+      "nom_court": "Zemmour",
+      "parti": "Reconquête",
+      "intentions": 5,
+      "derniere_maj": "2026-09-10",
+      "retrait": null
+    },
+    {
       "nom": "Sarah Knafo",
       "nom_court": "Knafo",
       "parti": "",
@@ -662,7 +887,7 @@
       "nom_court": "Faure",
       "parti": "Parti Socialiste",
       "intentions": 4.5,
-      "derniere_maj": "2026-09-02",
+      "derniere_maj": "2026-09-09",
       "retrait": null
     },
     {
@@ -698,14 +923,6 @@
       "retrait": null
     },
     {
-      "nom": "Fabien Roussel",
-      "nom_court": "Roussel",
-      "parti": "Parti Communiste Français",
-      "intentions": 3,
-      "derniere_maj": "2026-09-10",
-      "retrait": null
-    },
-    {
       "nom": "Marine Tondelier",
       "nom_court": "Tondelier",
       "parti": "Europe Écologie Les Verts",
@@ -722,17 +939,17 @@
       "retrait": null
     },
     {
-      "nom": "Nicolas Dupont-Aignan",
-      "nom_court": "Dupont-Aignan",
-      "parti": "",
+      "nom": "Fabien Roussel",
+      "nom_court": "Roussel",
+      "parti": "Parti Communiste Français",
       "intentions": 2,
       "derniere_maj": "2026-09-10",
       "retrait": null
     },
     {
-      "nom": "Éric Zemmour",
-      "nom_court": "Zemmour",
-      "parti": "Reconquête",
+      "nom": "Nicolas Dupont-Aignan",
+      "nom_court": "Dupont-Aignan",
+      "parti": "",
       "intentions": 2,
       "derniere_maj": "2026-09-10",
       "retrait": null
@@ -754,19 +971,19 @@
       "retrait": null
     },
     {
-      "nom": "Sandrine Rousseau",
-      "nom_court": "Rousseau",
-      "parti": "Europe Écologie Les Verts",
-      "intentions": 1,
-      "derniere_maj": "2024-09-12",
-      "retrait": null
-    },
-    {
       "nom": "Karim Bouamrane",
       "nom_court": "Bouamrane",
       "parti": "Parti Socialiste",
       "intentions": 1,
       "derniere_maj": "2026-09-10",
+      "retrait": null
+    },
+    {
+      "nom": "Sébastien Bonnal",
+      "nom_court": "Bonnal",
+      "parti": "",
+      "intentions": 0.5,
+      "derniere_maj": "2026-09-04",
       "retrait": null
     }
   ],
