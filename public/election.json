@@ -1,5 +1,5 @@
 {
-  "genere_le": "2026-09-21T06:19:15.446Z",
+  "genere_le": "2026-09-21T14:06:50.189Z",
   "phase": "sondages",
   "election": {
     "premier_tour": "2027-04-18",
@@ -50,7 +50,7 @@
         "id": "GA",
         "nom": "Gabriel Attal",
         "nom_court": "Attal",
-        "parti": "La République En Marche",
+        "parti": "Renaissance",
         "intentions": 8,
         "erreur_sup": 2.02,
         "erreur_inf": -2.02
@@ -193,7 +193,7 @@
       },
       {
         "nom_court": "Attal",
-        "parti": "La République En Marche",
+        "parti": "Renaissance",
         "points": "10.0,268.0 245.7,272.5 324.3,277.0 402.9,277.0 481.4,286.0 560.0,268.0",
         "style": "pointille",
         "derniere_valeur": 8,
@@ -419,7 +419,7 @@
           "id": "GA",
           "nom": "Gabriel Attal",
           "nom_court": "Attal",
-          "parti": "La République En Marche",
+          "parti": "Renaissance",
           "intentions": 14,
           "erreur_sup": 1.88,
           "erreur_inf": -1.88
@@ -493,7 +493,7 @@
           "id": "GA",
           "nom": "Gabriel Attal",
           "nom_court": "Attal",
-          "parti": "La République En Marche",
+          "parti": "Renaissance",
           "intentions": 15,
           "erreur_sup": 1.93,
           "erreur_inf": -1.93
@@ -763,7 +763,7 @@
         },
         {
           "nom_court": "Attal",
-          "parti": "La République En Marche",
+          "parti": "Renaissance",
           "intentions": 44
         }
       ]
@@ -821,7 +821,7 @@
     {
       "nom": "Gabriel Attal",
       "nom_court": "Attal",
-      "parti": "La République En Marche",
+      "parti": "Renaissance",
       "intentions": 8,
       "derniere_maj": "2026-09-10",
       "retrait": null
@@ -845,7 +845,7 @@
     {
       "nom": "Sébastien Lecornu",
       "nom_court": "Lecornu",
-      "parti": "Les Républicains",
+      "parti": "Renaissance",
       "intentions": 6.5,
       "derniere_maj": "2026-03-27",
       "retrait": null
@@ -877,7 +877,7 @@
     {
       "nom": "Sarah Knafo",
       "nom_court": "Knafo",
-      "parti": "",
+      "parti": "Reconquête",
       "intentions": 5,
       "derniere_maj": "2026-03-27",
       "retrait": null
@@ -949,7 +949,7 @@
     {
       "nom": "Nicolas Dupont-Aignan",
       "nom_court": "Dupont-Aignan",
-      "parti": "",
+      "parti": "Debout la France",
       "intentions": 2,
       "derniere_maj": "2026-09-10",
       "retrait": null
@@ -957,7 +957,7 @@
     {
       "nom": "David Lisnard",
       "nom_court": "Lisnard",
-      "parti": "Les Républicains",
+      "parti": "Nouvelle Énergie",
       "intentions": 2,
       "derniere_maj": "2026-09-10",
       "retrait": null
